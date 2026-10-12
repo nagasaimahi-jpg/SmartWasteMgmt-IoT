@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenLoop | Smart Waste App</title>
+    <meta
+      name="description"
+      content="Smart waste segregation app with rewards and municipal alerts"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <div class="phone-frame">
+        <header class="topbar">
+          <div class="status-left">
+            <span>9:41</span>
+          </div>
+          <div class="status-right">
+            <span>◔</span>
+            <span>📶</span>
+            <span>🔋</span>
+          </div>
+        </header>
+
+        <main class="screen active" id="home-screen">
+          <section class="hero-card">
+            <div class="hero-header">
+              <div>
+                <p class="eyebrow">Welcome back</p>
+                <h1>GreenLoop</h1>
+              </div>
+              <button class="icon-btn" aria-label="Notifications">🔔</button>
+            </div>
+
+            <div class="points-row">
+              <div>
+                <small>Eco points</small>
+                <strong id="points-total">640</strong>
+              </div>
+              <div class="chip success">Level 3</div>
+            </div>
+
+            <div class="progress-box">
+              <div class="progress-row">
+                <span>Reward progress</span>
+                <strong>640/1000</strong>
+              </div>
+              <div class="progress-bar">
+                <span style="width: 64%"></span>
+              </div>
+            </div>
+          </section>
+
+          <section class="quick-actions">
+            <button class="primary-action" data-screen="scan-screen">
+              <span>📸</span>
+              Scan waste
+            </button>
+            <button class="secondary-action" data-screen="map-screen">
+              <span>📍</span>
+              Nearby bins
+            </button>
+          </section>
+
+          <section class="card">
+            <div class="section-header">
+              <h3>Bin status</h3>
+              <a href="#">View all</a>
+            </div>
+            <div class="bin-list" id="bin-list"></div>
+          </section>
+
+          <section class="card">
+            <div class="section-header">
+              <h3>Recent activity</h3>
+              <a href="#">History</a>
+            </div>
+            <div class="activity-list" id="activity-list"></div>
+          </section>
+        </main>
+
+        <main class="screen" id="scan-screen">
+          <section class="top-nav">
+            <button class="back-btn" data-back="home-screen">←</button>
+            <h2>Scan waste</h2>
+          </section>
+
+          <div class="scan-panel">
+            <div class="scan-camera">
+              <div class="camera-frame">
+                <div class="camera-target"></div>
+              </div>
+            </div>
+
+            <div class="scan-actions">
+              <button class="primary-action wide" id="identify-waste-btn">Identify waste</button>
+              <button class="secondary-action wide" id="manual-select-btn">Manual selection</button>
+            </div>
+
+            <div class="classification-box" id="classification-box">
+              <p class="eyebrow">Detected item</p>
+              <h3 id="detected-type">Plastic bottle</h3>
+              <div class="meta-row">
+                <span>Type: <strong>Plastic</strong></span>
+                <span>Reward: +20 pts</span>
+              </div>
+            </div>
+
+            <button class="confirm-btn" id="confirm-disposal-btn">Send to smart bin</button>
+          </div>
+        </main>
+
+        <main class="screen" id="rewards-screen">
+          <section class="top-nav">
+            <button class="back-btn" data-back="home-screen">←</button>
+            <h2>Rewards</h2>
+          </section>
+
+          <div class="reward-summary">
+            <div class="reward-card purple">
+              <span>Total points</span>
+              <strong id="reward-points">640</strong>
+            </div>
+            <div class="reward-card green">
+              <span>Wallet</span>
+              <strong>₹120</strong>
+            </div>
+          </div>
+
+          <div class="card reward-tier-card">
+            <div class="section-header">
+              <h3>Reward tier</h3>
+            </div>
+            <div class="tier-progress">
+              <div class="tier-pill active">Bronze</div>
+              <div class="tier-pill">Silver</div>
+              <div class="tier-pill">Gold</div>
+            </div>
+            <div class="progress-bar">
+              <span style="width: 64%"></span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="section-header">
+              <h3>Redeem options</h3>
+            </div>
+            <div class="redeem-list">
+              <div class="redeem-item">
+                <div>
+                  <strong>₹25 credit</strong>
+                  <p>500 points</p>
+                </div>
+                <button>Redeem</button>
+              </div>
+              <div class="redeem-item">
+                <div>
+                  <strong>Gift voucher</strong>
+                  <p>750 points</p>
+                </div>
+                <button>Redeem</button>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <main class="screen" id="map-screen">
+          <section class="top-nav">
+            <button class="back-btn" data-back="home-screen">←</button>
+            <h2>Nearby bins</h2>
+          </section>
+
+          <div class="map-card">
+            <div class="map-grid">
+              <div class="map-pin pin-green" style="top: 25%; left: 25%">1</div>
+              <div class="map-pin pin-yellow" style="top: 45%; left: 52%">2</div>
+              <div class="map-pin pin-red" style="top: 60%; left: 70%">3</div>
+              <div class="map-pin pin-green" style="top: 75%; left: 35%">4</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="section-header">
+              <h3>Alerts</h3>
+            </div>
+            <div class="alert-list">
+              <div class="alert-item danger">
+                <span>Bin 3 is 82% full</span>
+                <small>Municipal collection alert sent</small>
+              </div>
+              <div class="alert-item warning">
+                <span>Bin 2 is 61% full</span>
+                <small>Check in 2 hours</small>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <main class="screen" id="profile-screen">
+          <section class="top-nav">
+            <button class="back-btn" data-back="home-screen">←</button>
+            <h2>Profile</h2>
+          </section>
+
+          <div class="profile-card card">
+            <div class="profile-header">
+              <div class="avatar">A</div>
+              <div>
+                <h3>Ananya Reddy</h3>
+                <p>Student • Green Campus</p>
+              </div>
+            </div>
+            <div class="profile-metrics">
+              <div>
+                <strong>84</strong>
+                <span>Disposals</span>
+              </div>
+              <div>
+                <strong>12</strong>
+                <span>Streak days</span>
+              </div>
+              <div>
+                <strong>90%</strong>
+                <span>Correct sorting</span>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <nav class="bottom-nav">
+          <button class="nav-item active" data-screen="home-screen">
+            <span>🏠</span>
+            <small>Home</small>
+          </button>
+          <button class="nav-item" data-screen="scan-screen">
+            <span>📸</span>
+            <small>Scan</small>
+          </button>
+          <button class="nav-item" data-screen="rewards-screen">
+            <span>🏆</span>
+            <small>Rewards</small>
+          </button>
+          <button class="nav-item" data-screen="map-screen">
+            <span>📍</span>
+            <small>Bins</small>
+          </button>
+          <button class="nav-item" data-screen="profile-screen">
+            <span>👤</span>
+            <small>Profile</small>
+          </button>
+        </nav>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
